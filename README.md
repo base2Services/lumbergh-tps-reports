@@ -1,6 +1,6 @@
-# AWS Security Posture Mod for Powerpipe
+# AWS Security Posture Powerpipe Mod
 
-This Powerpipe mod helps you monitor your AWS security posture and detect common security issues.
+This repository contains a Powerpipe mod for monitoring AWS security posture and detecting common security issues.
 
 ## Overview
 
@@ -9,6 +9,7 @@ The AWS Security Posture mod provides:
 - **Detections** for common AWS security issues
 - **Dashboards** for visualizing your security posture
 - **Queries** that power the detections and dashboards
+- **Benchmarks** for compliance reporting
 
 ## Requirements
 
@@ -32,6 +33,11 @@ git clone https://github.com/your-org/aws-security-posture-mod.git
 cd aws-security-posture-mod
 ```
 
+Install dependencies:
+```bash
+powerpipe mod install
+```
+
 ### Usage
 
 Start the dashboard server:
@@ -42,6 +48,11 @@ powerpipe server
 Run a specific detection:
 ```bash
 powerpipe detection run aws_security_posture.detection.ec2_public_instances_with_unrestricted_ssh
+```
+
+Run the security benchmark:
+```bash
+powerpipe benchmark run aws_security_posture.benchmark.aws_security_benchmark
 ```
 
 ## Available Detections
@@ -61,3 +72,5 @@ powerpipe detection run aws_security_posture.detection.ec2_public_instances_with
 ## License
 
 Apache 2.0 - See [LICENSE](LICENSE) for details.
+
+Created on 2025-05-01
