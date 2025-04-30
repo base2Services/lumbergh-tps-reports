@@ -1,0 +1,29 @@
+# Powerpipe and Steampipe files
+.powerpipe
+.steampipe
+**/.powerpipe
+**/.steampipe
+.mod.cache.json
+
+# Generated reports
+*.html
+*.md
+aws_compliance.benchmark.*
+
+# Local development files
+.vscode/
+.idea/
+*.iml
+
+# Dependency directories
+.powerpipe-mod/
+
+# Logs
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
