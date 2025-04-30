@@ -4,7 +4,8 @@ benchmark "aws_security_benchmark" {
   
   children = [
     benchmark.aws_ec2_security_benchmark,
-    benchmark.aws_rds_security_benchmark
+    benchmark.aws_rds_security_benchmark,
+    benchmark.aws_ecs_security_benchmark
   ]
 
   tags = {

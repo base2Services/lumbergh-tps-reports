@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Powerpipe
+        run: |
+          curl -L https://powerpipe.io/install/powerpipe.sh | sh
+          sudo mv ./powerpipe /usr/local/bin/
+          powerpipe --version
+
+      - name: Validate Mod
+        run: |
+          powerpipe mod validate
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: Create Release Notes
+        id: release_notes
+        run: |
+          # Generate release notes from git commits since last tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -z "$PREVIOUS_TAG" ]; then
+            RELEASE_NOTES=$(git log --pretty=format:"* %s" $GITHUB_SHA)
+          else
+            RELEASE_NOTES=$(git log --pretty=format:"* %s" ${PREVIOUS_TAG}..${GITHUB_SHA})
+          fi
+          echo "RELEASE_NOTES<<EOF" >> $GITHUB_ENV
+          echo "$RELEASE_NOTES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release v${{ env.VERSION }}
+          body: |
+            ## AWS Security Posture Mod v${{ env.VERSION }}
+            
+            ${{ env.RELEASE_NOTES }}
+            
+            ### Installation
+            
+            ```bash
+            powerpipe mod install github.com/your-org/aws-security-posture-mod@v${{ env.VERSION }}
+            ```
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
