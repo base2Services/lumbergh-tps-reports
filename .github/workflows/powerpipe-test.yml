@@ -16,18 +16,19 @@ jobs:
 
       - name: Setup Powerpipe
         run: |
-          mkdir -p $HOME/bin
-          echo "$HOME/bin" >> $GITHUB_PATH
+          mkdir -p $HOME/.local/bin
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
           curl -L https://powerpipe.io/install/powerpipe.sh | sh
-          mv ./powerpipe $HOME/bin/
-          chmod +x $HOME/bin/powerpipe
+          mv ./powerpipe $HOME/.local/bin/
+          chmod +x $HOME/.local/bin/powerpipe
           powerpipe --version
 
       - name: Setup Steampipe
         run: |
           curl -L https://steampipe.io/install/steampipe.sh | sh
-          mv ~/.steampipe/steampipe $HOME/bin/
-          chmod +x $HOME/bin/steampipe
+          mkdir -p $HOME/.local/bin
+          mv ~/.steampipe/steampipe $HOME/.local/bin/
+          chmod +x $HOME/.local/bin/steampipe
           steampipe --version
 
       - name: Install AWS Plugin
