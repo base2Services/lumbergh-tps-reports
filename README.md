@@ -71,6 +71,6 @@ powerpipe benchmark run aws_security_posture.benchmark.aws_security_benchmark
 
 ## License
 
-Apache 2.0 - See [LICENSE](LICENSE) for details.
+MIT License - See [LICENSE](LICENSE) for details.
 
 Created on 2025-05-01
