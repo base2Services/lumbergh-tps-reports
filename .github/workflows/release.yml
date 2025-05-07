@@ -18,8 +18,7 @@ jobs:
 
       - name: Setup Powerpipe
         run: |
-          curl -L https://powerpipe.io/install/powerpipe.sh | sh
-          sudo mv ./powerpipe /usr/local/bin/
+          curl -L https://powerpipe.io/install/powerpipe.sh | sudo sh
           powerpipe --version
 
       - name: Validate Mod
