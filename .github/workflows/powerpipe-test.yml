@@ -17,13 +17,13 @@ jobs:
       - name: Setup Powerpipe
         run: |
           curl -L https://powerpipe.io/install/powerpipe.sh | sh
-          sudo mv ./powerpipe /usr/local/bin/
+          sudo install -m 755 ./powerpipe /usr/local/bin/
           powerpipe --version
 
       - name: Setup Steampipe
         run: |
           curl -L https://steampipe.io/install/steampipe.sh | sh
-          sudo mv ~/.steampipe/steampipe /usr/local/bin/
+          sudo install -m 755 ~/.steampipe/steampipe /usr/local/bin/
           steampipe --version
 
       - name: Install AWS Plugin
