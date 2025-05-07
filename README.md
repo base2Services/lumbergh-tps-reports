@@ -1,5 +1,7 @@
 # AWS Security Posture Powerpipe Mod
 
+> **DISCLAIMER:** This repository is an AI experiment and is not intended for production use. It was created as a demonstration of AWS security monitoring capabilities and should be used for educational purposes only.
+
 This repository contains a Powerpipe mod for monitoring AWS security posture and detecting common security issues.
 
 ## Overview
